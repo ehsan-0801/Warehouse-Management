@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+.carousel{
+    margin-top: -65px;
+    z-index: -1;
+}
+.carousel .image
+{
+    border-radius: 0 0 20% 20%/0 0 30% 30% ;
+    transform: scaleX(1.1)
+}
+.navlink{
+    font-family: 'Oswald';
+}
+.bgColor{
+    background-color:transparent;
+}
+.sliderHeading{
+    font-size: 5em;
+    margin-top: -30%;
+}
+@media only screen and (max-width: 600px) {
+    .carousel {
+        margin-top: 0;
+        z-index: -1;
+    }
+    .carousel .image
+    {
+        border-radius: 0 0 0 0;
+    }
+    .bgColor{
+        background-color: #264653;
+    }
+  }
