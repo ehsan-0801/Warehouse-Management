@@ -6,7 +6,6 @@ import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 const Signup = () => {
     const [check, setCheck] = useState(false);
-    const [customerror, SetCustomError] = useState('');
     const [
         createUserWithEmailAndPassword,
         user,
@@ -17,8 +16,8 @@ const Signup = () => {
     const navigate = useNavigate();
 
     let errors;
-    if (error || customerror) {
-        errors = <p className='text-danger bg-secondary p-2 border border-2 rounded'>Error: { error?.message } { customerror?.message } </p>
+    if (error) {
+        errors = <p className='text-danger bg-secondary p-2 border border-2 rounded'>Error: { error?.message }  </p>
     }
     if (loading) {
         return <p>Wait Please</p>;
@@ -35,9 +34,6 @@ const Signup = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         const ConfirmPassword = e.target.Cpassword.value;
-        if (password !== ConfirmPassword) {
-            SetCustomError("password did not match");
-        }
         await createUserWithEmailAndPassword(email, password);
         navigate('/home');
     }
