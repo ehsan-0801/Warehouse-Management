@@ -16,12 +16,13 @@ const Header = () => {
         <div>
             <Navbar className="bgColor" expand="lg">
                 <Container>
-                    <Navbar.Brand className="logo" href="#home">Watch Warehouse</Navbar.Brand>
+                    <Navbar.Brand as={ Link } className="logo" to="/home">Watch Warehouse</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mx-auto ">
                             <Nav.Link className="mx-3 navlink" as={ Link } to="/">Home</Nav.Link>
                             <Nav.Link className="mx-3 navlink" as={ Link } to="/about">About</Nav.Link>
+                            <Nav.Link className="mx-3 navlink" as={ Link } to="/blog">Blog</Nav.Link>
                             {
                                 user && <>
                                     <Nav.Link className="mx-3 navlink" as={ Link } to="/inventory">Inventory</Nav.Link>
@@ -33,8 +34,12 @@ const Header = () => {
                                     :
                                     <Nav.Link className="mx-3 navlink" as={ Link } to="/signin">Sign In</Nav.Link> }
 
+                            {
+                                !user && <>
+                                    <Nav.Link className="mx-3 navlink" as={ Link } to="/signup">Sign Up</Nav.Link>
+                                </>
+                            }
 
-                            <Nav.Link className="mx-3 navlink" as={ Link } to="/signup">Sign Up</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

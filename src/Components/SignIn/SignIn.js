@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import './SignIn.css'
 import google from '../../images/social/google.png';
 import github from '../../images/social/github.png';
-import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithGithub, useSignInWithGoogle, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 const Login = () => {
+    const emailRef = useRef('');
+    const passwordRef = useRef('');
+
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+
+    const emailPasswordLogin = async (e) => {
+        e.preventDefault();
+        const email = emailRef.current.value;
+        const password = passwordRef.current.value;
+        await signInWithEmailAndPassword(email, password);
+    }
+
     const [signInWithGoogle, googleuser, googleloading, googleerror] = useSignInWithGoogle(auth);
     const [signInWithGithub, githubuser, githubloading, githuberror] = useSignInWithGithub(auth);
     const navigate = useNavigate();
@@ -31,13 +48,13 @@ const Login = () => {
         <div style={ { backgroundColor: 'powderblue' } } className="p-5">
             { errors }
             <h2 style={ { color: 'burlywood' } } className="text-center fw-bold fs-1">Login Here Please</h2>
-            <Form className="form mx-auto my-5">
+            <Form onSubmit={ emailPasswordLogin } className="form mx-auto my-5">
                 <Form.Group as={ Row } className="mb-3" controlId="formHorizontalEmail">
                     <Form.Label column sm={ 2 }>
                         Email
                     </Form.Label>
                     <Col sm={ 10 }>
-                        <Form.Control type="email" placeholder="Email" required />
+                        <Form.Control ref={ emailRef } type="email" placeholder="Email" required />
                     </Col>
                 </Form.Group>
 
@@ -46,7 +63,7 @@ const Login = () => {
                         Password
                     </Form.Label>
                     <Col sm={ 10 }>
-                        <Form.Control type="password" placeholder="Password" required />
+                        <Form.Control ref={ passwordRef } type="password" placeholder="Password" required />
                     </Col>
                 </Form.Group>
 
