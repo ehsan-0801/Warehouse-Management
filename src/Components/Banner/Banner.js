@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import watch1 from '../../images/watch1.jpg'
 import watch2 from '../../images/watch2.jpg'
 import watch3 from '../../images/watch3.jpg'
 const Banner = () => {
+    const [index, setIndex] = useState(0);
+
+    const handleSelect = (selectedIndex, e) => {
+        setIndex(selectedIndex);
+    };
     return (
-        <Carousel className="carousel">
+        <Carousel className="carousel" activeIndex={ index } onSelect={ handleSelect }>
             <Carousel.Item>
                 <img
-                    className="d-block w-100 image"
+                    className="d-bloc image k w-100"
                     src={ watch1 }
                     alt="First slide"
                 />
@@ -18,7 +23,7 @@ const Banner = () => {
             </Carousel.Item>
             <Carousel.Item>
                 <img
-                    className="d-block w-100 image"
+                    className="d-block image  w-100"
                     src={ watch2 }
                     alt="Second slide"
                 />
@@ -29,7 +34,7 @@ const Banner = () => {
             </Carousel.Item>
             <Carousel.Item>
                 <img
-                    className="d-block w-100 image"
+                    className="d-bloc image k w-100"
                     src={ watch3 }
                     alt="Third slide"
                 />

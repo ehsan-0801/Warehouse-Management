@@ -6,7 +6,7 @@
 }
 .carousel .image
 {
-    border-radius: 0 0 30% 0/0 0 60% 0;
+    border-radius: 0 0 30% 30%/0 0 60% 60%;
     transform: scaleX(1.1);
     
 }
@@ -40,9 +40,9 @@
     {
         border-radius: 0 0 0 0;
     }
-    .bgColor{
+    /* .bgColor{
         background-color: #264653;
-    }
+    } */
     .sliderHeading{
         font-size: 1em;
         margin-top: 0;
