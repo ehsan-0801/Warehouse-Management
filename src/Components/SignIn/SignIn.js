@@ -33,7 +33,7 @@ const Login = () => {
 
 
     if (googleerror || githuberror || error) {
-        errors = <p className='container text-danger bg-secondary p-2 border border-2 rounded shadow w-50'>Error: { googleerror?.message } { githuberror?.message }  </p>
+        errors = <p className='container text-danger bg-secondary p-2 border border-2 rounded shadow w-50'>Error: { googleerror?.message } { githuberror?.message }  { error?.message }</p>
     }
 
 
