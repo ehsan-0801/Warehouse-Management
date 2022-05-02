@@ -28,10 +28,10 @@ const Login = () => {
         navigate('/home')
     }
     return (
-        <div className="my-5">
+        <div style={ { backgroundColor: 'powderblue' } } className="p-5">
             { errors }
             <h2 style={ { color: 'burlywood' } } className="text-center fw-bold fs-1">Login Here Please</h2>
-            <Form className="form mx-auto">
+            <Form className="form mx-auto my-5">
                 <Form.Group as={ Row } className="mb-3" controlId="formHorizontalEmail">
                     <Form.Label column sm={ 2 }>
                         Email

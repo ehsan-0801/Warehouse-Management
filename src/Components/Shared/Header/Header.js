@@ -22,12 +22,18 @@ const Header = () => {
                         <Nav className="mx-auto ">
                             <Nav.Link className="mx-3 navlink" as={ Link } to="/">Home</Nav.Link>
                             <Nav.Link className="mx-3 navlink" as={ Link } to="/about">About</Nav.Link>
-                            <Nav.Link className="mx-3 navlink" as={ Link } to="/inventory">Inventory</Nav.Link>
+                            {
+                                user && <>
+                                    <Nav.Link className="mx-3 navlink" as={ Link } to="/inventory">Inventory</Nav.Link>
+                                </>
+                            }
                             {
                                 user ?
                                     <Nav.Link className="mx-3 navlink" onClick={ handleSignOut }>Sign Out</Nav.Link>
                                     :
                                     <Nav.Link className="mx-3 navlink" as={ Link } to="/signin">Sign In</Nav.Link> }
+
+
                             <Nav.Link className="mx-3 navlink" as={ Link } to="/signup">Sign Up</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
