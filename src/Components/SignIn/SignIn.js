@@ -32,12 +32,12 @@ const Login = () => {
     let errors;
 
 
-    if (googleerror || githuberror) {
+    if (googleerror || githuberror || error) {
         errors = <p className='container text-danger bg-secondary p-2 border border-2 rounded shadow w-50'>Error: { googleerror?.message } { githuberror?.message }  </p>
     }
 
 
-    if (googleloading || githubloading) {
+    if (googleloading || githubloading || loading) {
         return <p>Wait Please</p>;
     }
 
