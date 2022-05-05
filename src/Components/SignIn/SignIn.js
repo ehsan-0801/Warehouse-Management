@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './SignIn.css'
 import google from '../../images/social/google.png';
 import github from '../../images/social/github.png';
@@ -9,6 +9,9 @@ import auth from '../../firebase.init';
 const Login = () => {
     const emailRef = useRef('');
     const passwordRef = useRef('');
+
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
     const [
         signInWithEmailAndPassword,

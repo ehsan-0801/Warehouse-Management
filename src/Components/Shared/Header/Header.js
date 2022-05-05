@@ -23,11 +23,7 @@ const Header = () => {
                             <Nav.Link className="mx-3 navlink" as={ Link } to="/">Home</Nav.Link>
                             <Nav.Link className="mx-3 navlink" as={ Link } to="/about">About</Nav.Link>
                             <Nav.Link className="mx-3 navlink" as={ Link } to="/blog">Blog</Nav.Link>
-                            {
-                                user && <>
-                                    <Nav.Link className="mx-3 navlink" as={ Link } to="/inventory">Inventory</Nav.Link>
-                                </>
-                            }
+                            <Nav.Link className="mx-3 navlink" as={ Link } to="/inventory">Inventory</Nav.Link>
                             {
                                 user ?
                                     <Nav.Link className="mx-3 navlink" onClick={ handleSignOut }>Sign Out</Nav.Link>
