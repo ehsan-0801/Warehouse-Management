@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './SignUp.css';
 import Avatar from '../../images/user.png';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import Loading from '../Loading/Loading';
 const Signup = () => {
     const [check, setCheck] = useState(false);
     const [
@@ -13,14 +14,17 @@ const Signup = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
     const navigate = useNavigate();
 
     let errors;
     if (error) {
         errors = <p className='text-danger bg-secondary p-2 border border-2 rounded'>Error: { error?.message }  </p>
     }
-    if (loading) {
-        return <p>Wait Please</p>;
+
+    if (loading || updating) {
+        return <Loading></Loading>
     }
     const navigateSignin = () => {
         navigate('/signin');
@@ -35,12 +39,12 @@ const Signup = () => {
         const password = e.target.password.value;
         const ConfirmPassword = e.target.Cpassword.value;
         await createUserWithEmailAndPassword(email, password);
-        navigate('/home');
+        await updateProfile({ displayName: name });
     }
     return (
         <div className="signupPage">
             <form action="" className="container signUpform my-5" onSubmit={ handleSignUp }>
-                <img style={ { width: '300px' } } className="formImage" src={ Avatar } alt="" />
+                <img className="formImage" src={ Avatar } alt="" />
                 <h2>User Sign Up</h2>
                 <div className="my-3 row">
                     <div className="col-md-4">

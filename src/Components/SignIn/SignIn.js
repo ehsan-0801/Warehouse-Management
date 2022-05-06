@@ -6,7 +6,8 @@ import google from '../../images/social/google.png';
 import github from '../../images/social/github.png';
 import { useSignInWithGithub, useSignInWithGoogle, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
-const Login = () => {
+import Loading from '../Loading/Loading';
+const SignIn = () => {
     const emailRef = useRef('');
     const passwordRef = useRef('');
 
@@ -41,12 +42,15 @@ const Login = () => {
 
 
     if (googleloading || githubloading || loading) {
-        return <p>Wait Please</p>;
+        return <Loading></Loading>;
     }
 
-    if (googleuser || githubuser) {
-        navigate('/home')
+    if (googleuser || githubuser || user) {
+        navigate(from, { replace: true });
     }
+    // if (user) {
+
+    // }
     return (
         <div style={ { backgroundColor: 'powderblue' } } className="p-5">
             { errors }
@@ -120,4 +124,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignIn;

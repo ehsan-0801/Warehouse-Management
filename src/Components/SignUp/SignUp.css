@@ -15,9 +15,15 @@
     background-color: #abd2d7;
     padding: 20px;
 }
+.formImage{
+    width: 300px;
+}
 @media only screen and (max-width: 600px) {
     .signUpform{
         width: 100%;
+    }
+    .formImage{
+        width: 50px;
     }
     
 }

@@ -10,6 +10,7 @@ import About from './Components/About/About';
 import Inventory from './Components/Inventory/Inventory';
 import NotFound from './Components/NotFound/NotFound';
 import Blog from './Components/Blog/Blog';
+import RequireAuth from './Components/RequireAuth/RequireAuth';
 function App() {
   return (
     <div className="App">
@@ -18,7 +19,9 @@ function App() {
         <Route path="/" element={ <Home></Home> }></Route>
         <Route path="/home" element={ <Home></Home> }></Route>
         <Route path="/about" element={ <About></About> }></Route>
-        <Route path="/blog" element={ <Blog></Blog> }></Route>
+        <Route path="/blog" element={ <RequireAuth>
+          <Blog></Blog>
+        </RequireAuth> }></Route>
         <Route path="/inventory" element={ <Inventory></Inventory> }></Route>
         <Route path="/signup" element={ <Signup></Signup> }></Route>
         <Route path="/signin" element={ <SignIn></SignIn> }></Route>
