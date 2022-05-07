@@ -6,13 +6,13 @@ import Footer from './Components/Shared/Footer/Footer';
 import { Route, Routes } from 'react-router-dom';
 import Signup from './Components/SignUp/SignUp';
 import SignIn from './Components/SignIn/SignIn';
-import About from './Components/About/About';
 import NotFound from './Components/NotFound/NotFound';
 import Blog from './Components/Blog/Blog';
 import RequireAuth from './Components/RequireAuth/RequireAuth';
 import Insertwatch from './Components/Operations/Insertwatch/Insertwatch';
 import WatchesDetails from './Components/Shared/WatchesDetails/WatchesDetails';
 import ManageInventory from './Components/ManageInventory/ManageInventory';
+import MyItems from './Components/MyItems/MyItems';
 function App() {
   return (
     <div className="App">
@@ -20,7 +20,6 @@ function App() {
       <Routes>
         <Route path="/" element={ <Home></Home> }></Route>
         <Route path="/home" element={ <Home></Home> }></Route>
-        <Route path="/about" element={ <About></About> }></Route>
         <Route path="/blog" element={ <Blog></Blog> }></Route>
         <Route path="/insertwatch" element={
           <RequireAuth>
@@ -35,6 +34,11 @@ function App() {
         <Route path="/manageInventory" element={
           <RequireAuth>
             <ManageInventory></ManageInventory>
+          </RequireAuth>
+        }></Route>
+        <Route path="/myitems" element={
+          <RequireAuth>
+            <MyItems></MyItems>
           </RequireAuth>
         }></Route>
         <Route path="/signup" element={ <Signup></Signup> }></Route>

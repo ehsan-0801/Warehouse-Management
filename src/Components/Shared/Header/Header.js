@@ -21,7 +21,6 @@ const Header = () => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mx-auto ">
                             <Nav.Link className="mx-3 navlink" as={ Link } to="/home">Home</Nav.Link>
-                            <Nav.Link className="mx-3 navlink" as={ Link } to="/about">About</Nav.Link>
                             <Nav.Link className="mx-3 navlink" as={ Link } to="/blog">Blog</Nav.Link>
                             <Nav.Link className="mx-3 navlink" href="home#Inventory">Inventory Items</Nav.Link>
                             {/* <Nav.Link className="mx-3 navlink" as={ Link } to="/inventory">Inventory</Nav.Link> */ }
@@ -29,6 +28,7 @@ const Header = () => {
                                 user && <>
                                     <Nav.Link as={ Link } className="mx-3 navlink" to="/insertwatch">Add Items</Nav.Link>
                                     <Nav.Link as={ Link } className="mx-3 navlink" to="/manageInventory">Manage Items</Nav.Link>
+                                    <Nav.Link as={ Link } className="mx-3 navlink" to="/myitems">My Items</Nav.Link>
                                     {/* <Nav.Link as={Link} to="manage">Manage</Nav.Link>
                                 <Nav.Link as={Link} to="orders">Orders</Nav.Link> */}
                                 </>
