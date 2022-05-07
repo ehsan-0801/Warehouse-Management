@@ -4,9 +4,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './SignIn.css'
 import google from '../../images/social/google.png';
 import github from '../../images/social/github.png';
-import { useSignInWithGithub, useSignInWithGoogle, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithGithub, useSignInWithGoogle, useSignInWithEmailAndPassword, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
+import { sendPasswordResetEmail } from 'firebase/auth';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const SignIn = () => {
     const emailRef = useRef('');
     const passwordRef = useRef('');
@@ -20,6 +23,8 @@ const SignIn = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+
+    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth)
 
     const emailPasswordLogin = async (e) => {
         e.preventDefault();
@@ -37,7 +42,7 @@ const SignIn = () => {
 
 
     if (googleerror || githuberror || error) {
-        errors = <p className='container text-danger bg-secondary p-2 border border-2 rounded shadow w-50'>Error: { googleerror?.message } { githuberror?.message }  { error?.message }</p>
+        errors = <p className='container text-danger bg-custom p-2 border border-2 rounded shadow w-50'>Error: { googleerror?.message } { githuberror?.message }  { error?.message }</p>
     }
 
 
@@ -48,45 +53,49 @@ const SignIn = () => {
     if (googleuser || githubuser || user) {
         navigate(from, { replace: true });
     }
+    const resetPassword = async () => {
+        const email = emailRef.current.value;
+        if (email) {
+            await sendPasswordResetEmail(email);
+            toast('Email has been sent');
+        }
+        else {
+            toast('please enter your email address');
+        }
+    }
+
     // if (user) {
 
     // }
     return (
         <div style={ { backgroundColor: 'powderblue' } } className="p-5">
             { errors }
+            <ToastContainer></ToastContainer>
             <h2 style={ { color: 'burlywood' } } className="text-center fw-bold fs-1">Login Here Please</h2>
-            <Form onSubmit={ emailPasswordLogin } className="form mx-auto my-5">
-                <Form.Group as={ Row } className="mb-3" controlId="formHorizontalEmail">
-                    <Form.Label column sm={ 2 }>
-                        Email
-                    </Form.Label>
-                    <Col sm={ 10 }>
-                        <Form.Control ref={ emailRef } type="email" placeholder="Email" required />
-                    </Col>
-                </Form.Group>
-
-                <Form.Group as={ Row } className="mb-3" controlId="formHorizontalPassword">
-                    <Form.Label column sm={ 2 }>
-                        Password
-                    </Form.Label>
-                    <Col sm={ 10 }>
-                        <Form.Control ref={ passwordRef } type="password" placeholder="Password" required />
-                    </Col>
-                </Form.Group>
-
-                <Form.Group as={ Row } className="mb-3">
-                    <Col sm={ { span: 10, offset: 2 } }>
-                        <Button type="submit" variant="Loginbtn w-100 mx-auto d-block mb-2">Sign in</Button>
-                    </Col>
-                </Form.Group>
-                <div className="mx-auto d-flex justify-content-center align-items-center">
-                    <div className="">
-                        <p className="mx-auto">Forget Password?</p>
-                    </div>
-                    <div className="">
-                        <p><button className='mx-auto btn-reset pe-auto text-decoration-none' >Please Reset Here</button></p>
-                    </div>
-                </div>
+            <div className="form mx-auto my-5">
+                <Form onSubmit={ emailPasswordLogin } >
+                    <Form.Group as={ Row } className="mb-3" controlId="formHorizontalEmail">
+                        <Form.Label column sm={ 2 }>
+                            Email
+                        </Form.Label>
+                        <Col sm={ 10 }>
+                            <Form.Control ref={ emailRef } type="email" placeholder="Email" required />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={ Row } className="mb-3" controlId="formHorizontalPassword">
+                        <Form.Label column sm={ 2 }>
+                            Password
+                        </Form.Label>
+                        <Col sm={ 10 }>
+                            <Form.Control ref={ passwordRef } type="password" placeholder="Password" required />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={ Row } className="mb-3">
+                        <Col sm={ { span: 10, offset: 2 } }>
+                            <Button type="submit" variant="Loginbtn w-100 mx-auto d-block mb-2">Sign in</Button>
+                        </Col>
+                    </Form.Group>
+                </Form>
                 <div className="mx-auto d-flex justify-content-center align-items-center">
                     <div className="">
                         <p className="mx-auto text-primary">Exploring First Time?</p>
@@ -99,7 +108,6 @@ const SignIn = () => {
                     <h2 className='border-top border-bottom p-3'>You can also sign in with</h2>
                 </div>
                 <div className="row">
-
                 </div>
                 <div className="row">
                     <div className="col-md-6">
@@ -119,7 +127,17 @@ const SignIn = () => {
                         </button>
                     </div>
                 </div>
-            </Form>
+                <div className="mx-auto d-flex justify-content-center align-items-center">
+                    <div className="">
+                        <p className="mx-auto">Forget Password?</p>
+                    </div>
+                    <div className="">
+                        <p><button onClick={ resetPassword } className='mx-auto btn-reset pe-auto text-decoration-none' >Please Reset Here</button></p>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     );
 };

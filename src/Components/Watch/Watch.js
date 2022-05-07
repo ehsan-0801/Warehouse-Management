@@ -5,8 +5,8 @@ const Watch = ({ watch }) => {
     const { _id, name, img, description, price, quantity, SupplierName } = watch;
     const navigate = useNavigate();
 
-    const navigateToServiceDetail = id => {
-        navigate(`/service/${id}`);
+    const navigateWatchDetails = _id => {
+        navigate(`/inventory/${_id}`);
     }
     return (
         <div className='watch'>
@@ -16,7 +16,7 @@ const Watch = ({ watch }) => {
             <p>Quantity: { quantity }</p>
             <p>Supplier: { SupplierName }</p>
             <p><small>{ description }</small></p>
-            <button className='btnUpdate'>Update</button>
+            <button onClick={ () => navigateWatchDetails(_id) } className='btnUpdate'>Update</button>
         </div>
     );
 };

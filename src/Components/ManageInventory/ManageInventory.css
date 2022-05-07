@@ -1,3 +1,28 @@
+.watch-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    overflow: scroll;
+    height: 800px;
+}
+.watchsection{
+    padding:20px;
+    background-color: #a2d2ff;
+}
+.text-color{
+    color: burlywood;
+}
+@media only screen and (max-width:600px) {
+    .watch-container{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+    .watch-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 .watch{
     border: 1px solid lightgray;
     border-radius: 10px;
@@ -13,7 +38,7 @@
     border: 1px solid #e5e5e5;
     border-radius: 10px;
 }
-.btnUpdate{
+.btnDelete{
     background-color: transparent;
     border: 2px solid burlywood;
     border-radius: 6px;
@@ -22,9 +47,9 @@
     padding-top: 10px;
     padding-bottom: 10px;
     color: burlywood;
-    margin-top:auto;
+    margin-top: auto;
 }
-.btnUpdate:hover{
+.btnDelete:hover{
     background-color: burlywood;
     border: 2px solid #e5e5e5;
     color: #e5e5e5;

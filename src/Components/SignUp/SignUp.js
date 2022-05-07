@@ -20,7 +20,7 @@ const Signup = () => {
 
     let errors;
     if (error) {
-        errors = <p className='text-danger bg-secondary p-2 border border-2 rounded'>Error: { error?.message }  </p>
+        errors = <p className='text-danger bg-custom p-2 border border-2 rounded'>Error: { error?.message }  </p>
     }
 
     if (loading || updating) {

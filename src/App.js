@@ -7,11 +7,12 @@ import { Route, Routes } from 'react-router-dom';
 import Signup from './Components/SignUp/SignUp';
 import SignIn from './Components/SignIn/SignIn';
 import About from './Components/About/About';
-import Inventory from './Components/Inventory/Inventory';
 import NotFound from './Components/NotFound/NotFound';
 import Blog from './Components/Blog/Blog';
 import RequireAuth from './Components/RequireAuth/RequireAuth';
 import Insertwatch from './Components/Operations/Insertwatch/Insertwatch';
+import WatchesDetails from './Components/Shared/WatchesDetails/WatchesDetails';
+import ManageInventory from './Components/ManageInventory/ManageInventory';
 function App() {
   return (
     <div className="App">
@@ -26,7 +27,16 @@ function App() {
             <Insertwatch></Insertwatch>
           </RequireAuth> }>
         </Route>
-        <Route path="/inventory" element={ <Inventory></Inventory> }></Route>
+        <Route path="/inventory/:id" element={
+          <RequireAuth>
+            <WatchesDetails></WatchesDetails>
+          </RequireAuth> }>
+        </Route>
+        <Route path="/manageInventory" element={
+          <RequireAuth>
+            <ManageInventory></ManageInventory>
+          </RequireAuth>
+        }></Route>
         <Route path="/signup" element={ <Signup></Signup> }></Route>
         <Route path="/signin" element={ <SignIn></SignIn> }></Route>
         <Route path="*" element={ <NotFound></NotFound> }></Route>
