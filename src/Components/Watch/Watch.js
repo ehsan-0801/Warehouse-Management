@@ -16,7 +16,7 @@ const Watch = ({ watch }) => {
             <p>Quantity: { quantity }</p>
             <p>Supplier: { SupplierName }</p>
             <p><small>{ description }</small></p>
-            <button className='btn btn-outline-secondary'>Update</button>
+            <button className='btnUpdate'>Update</button>
         </div>
     );
 };

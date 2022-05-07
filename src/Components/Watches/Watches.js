@@ -12,17 +12,19 @@ const Watches = () => {
     }, [])
 
     return (
-        <div id="watches" className='container my-5'>
-            <div className="row">
-                <h1 className='text-primary text-center mt-5'>Inventory Items</h1>
-                <div className="watches-container">
-                    {
-                        watches.map(watch => <Watch
-                            key={ watch._id }
-                            watch={ watch }
-                        >
-                        </Watch>).slice(0, 6)
-                    }
+        <div id="watches" className="container-fluid watchsection my-5">
+            <div className='container'>
+                <div className="row">
+                    <h1 className='text-center my-5 text-color'>Inventory Items</h1>
+                    <div className="watches-container">
+                        {
+                            watches.map(watch => <Watch
+                                key={ watch._id }
+                                watch={ watch }
+                            >
+                            </Watch>).slice(0, 6)
+                        }
+                    </div>
                 </div>
             </div>
         </div>
