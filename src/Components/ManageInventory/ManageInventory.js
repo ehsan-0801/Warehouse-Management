@@ -10,7 +10,7 @@ const ManageInventory = () => {
     const handleDelete = watchId => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            const url = `http://localhost:5000/items/${watchId}`;
+            const url = `https://still-stream-41987.herokuapp.com/items/${watchId}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -38,7 +38,8 @@ const ManageInventory = () => {
                                 <img className='w-100' src={ watch.img } alt="" />
                                 <h2>{ watch.name }</h2>
                                 <p>Price: { watch.price }</p>
-                                <p>Quantity: { watch.quantity }</p>
+                                <p>Stock: { watch.quantity }</p>
+                                <p>Sold: { watch.SoldAmount }</p>
                                 <p>Supplier: { watch.SupplierName }</p>
                                 <p><small>{ watch.description }</small></p>
                                 <button className='btnDelete' onClick={ () => handleDelete(watch._id) }>Delete</button>

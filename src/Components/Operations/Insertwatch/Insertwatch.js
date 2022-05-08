@@ -10,7 +10,7 @@ const Insertwatch = () => {
     console.log(user)
     const onSubmit = data => {
         console.log(data);
-        const url = `http://localhost:5000/items`;
+        const url = `https://still-stream-41987.herokuapp.com/items`;
         fetch(url, {
             method: 'POST',
             headers: {

@@ -17,7 +17,6 @@ const Signup = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
-    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
     const navigate = useNavigate();
 
@@ -26,7 +25,7 @@ const Signup = () => {
         errors = <p className='text-danger bg-custom p-2 border border-2 rounded'>Error: { error?.message }  </p>
     }
 
-    if (loading || updating) {
+    if (loading) {
         return <Loading></Loading>
     }
     const navigateSignin = () => {
@@ -43,7 +42,6 @@ const Signup = () => {
         const ConfirmPassword = e.target.Cpassword.value;
         await createUserWithEmailAndPassword(email, password);
         toast("Email sent !!! Please verify")
-        await updateProfile({ displayName: name });
     }
     return (
         <div className="signupPage">

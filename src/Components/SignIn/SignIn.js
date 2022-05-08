@@ -11,6 +11,7 @@ import { sendPasswordResetEmail } from 'firebase/auth';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PageTitle from '../PageTitle/PageTitle';
+import axios from 'axios';
 const SignIn = () => {
     const emailRef = useRef('');
     const passwordRef = useRef('');
@@ -32,6 +33,10 @@ const SignIn = () => {
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
         await signInWithEmailAndPassword(email, password);
+        const { data } = await axios.post('https://still-stream-41987.herokuapp.com/signin', { email });
+        localStorage.setItem('accessToken', data.accessToken);
+        // console.log(data);
+        navigate(from, { replace: true });
     }
 
     const [signInWithGoogle, googleuser, googleloading, googleerror] = useSignInWithGoogle(auth);
@@ -51,7 +56,7 @@ const SignIn = () => {
         return <Loading></Loading>;
     }
 
-    if (googleuser || githubuser || user) {
+    if (googleuser || githubuser) {
         navigate(from, { replace: true });
     }
     const resetPassword = async () => {
