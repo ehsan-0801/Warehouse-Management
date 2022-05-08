@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import PageTitle from '../PageTitle/PageTitle';
 const MyItems = () => {
     const [user] = useAuthState(auth);
     // console.log(user);
@@ -29,6 +30,7 @@ const MyItems = () => {
 
     return (
         <div className="container my-2 p-5">
+            <PageTitle title="My Items"></PageTitle>
             <h2 className="text-primary fs-1 fw-bold">Only My Items Here</h2>
             <div className="watch-container">
                 {

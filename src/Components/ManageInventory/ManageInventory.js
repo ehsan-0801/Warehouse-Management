@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useWatch from '../../Hooks/useWatch';
+import PageTitle from '../PageTitle/PageTitle';
 import './ManageInventory.css';
 const ManageInventory = () => {
     // const [watches, setWatches] = useState([]);
@@ -24,6 +25,7 @@ const ManageInventory = () => {
 
     return (
         <div id="Inventory" className="container-fluid watchsection my-5">
+            <PageTitle title="Manage Inventory"></PageTitle>
             <div className='container'>
                 <div className="row">
                     <div className="d-flex align-items-center">

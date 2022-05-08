@@ -8,29 +8,29 @@ const Stats = () => {
     return (
         <div className="p-3 my-2">
             <h2 className="text-primary">Stats</h2>
-            <div className="row mx-auto my-5">
-                <div className="col-md-6 col-sm-12">
-                    <BarChart width={ 300 } height={ 250 } data={ watches }>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Bar dataKey="quantity" fill="#82ca9d" />
-                    </BarChart>
+            <div className="container">
+                <div className="row mx-auto my-5">
+                    <div className="col-md-6 col-sm-12">
+                        <BarChart width={ 300 } height={ 250 } data={ watches }>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            <Bar dataKey="quantity" fill="#82ca9d" />
+                        </BarChart>
+                    </div>
+                    <div className="col-md-6 col-sm-12">
+                        <BarChart width={ 300 } height={ 250 } data={ watches }>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            <Bar dataKey="price" fill="#8884d8" />
+                        </BarChart>
+                    </div>
                 </div>
-                <div className="col-md-6 col-sm-12">
-                    <BarChart width={ 300 } height={ 250 } data={ watches }>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Bar dataKey="price" fill="#8884d8" />
-                    </BarChart>
-                </div>
-            </div>
-            <div className="">
                 <div className="row container mx-auto">
                     <div className="col-md-6 col-sm-12">
                         <LineChart width={ 300 } height={ 400 } data={ watches }
@@ -57,7 +57,6 @@ const Stats = () => {
                         </LineChart>
                     </div>
                 </div>
-
             </div>
         </div>
     );

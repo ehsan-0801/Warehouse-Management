@@ -2,6 +2,7 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import auth from '../../../firebase.init';
+import PageTitle from '../../PageTitle/PageTitle';
 import './Insertwatch.css'
 const Insertwatch = () => {
     const { register, handleSubmit } = useForm();
@@ -25,7 +26,7 @@ const Insertwatch = () => {
     };
     return (
         <div className='itemsaddingpage'>
-
+            <PageTitle title="Add Items Page"></PageTitle>
             <form className='w-50 mx-auto d-flex flex-column ItemsForm' onSubmit={ handleSubmit(onSubmit) }>
                 <h2>Adding Watch to the Inventory</h2>
                 <input className='mb-2' placeholder='Name' { ...register("name") } />

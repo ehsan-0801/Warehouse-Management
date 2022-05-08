@@ -1,9 +1,11 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
+import PageTitle from '../PageTitle/PageTitle';
 
 const Blog = () => {
     return (
         <div className="bg-custom" >
+            <PageTitle title="Blog"></PageTitle>
             <h1 className="text-primary">Question and Answers</h1>
             <div className="container p-2">
                 <h2>Difference between javascript and nodejs</h2>

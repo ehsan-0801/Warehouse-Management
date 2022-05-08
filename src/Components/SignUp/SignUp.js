@@ -5,6 +5,9 @@ import Avatar from '../../images/user.png';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
+import PageTitle from '../PageTitle/PageTitle';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Signup = () => {
     const [check, setCheck] = useState(false);
     const [
@@ -39,10 +42,12 @@ const Signup = () => {
         const password = e.target.password.value;
         const ConfirmPassword = e.target.Cpassword.value;
         await createUserWithEmailAndPassword(email, password);
+        toast("Email sent !!! Please verify")
         await updateProfile({ displayName: name });
     }
     return (
         <div className="signupPage">
+            <PageTitle title="Please SignUp"></PageTitle>
             <form action="" className="container signUpform my-5" onSubmit={ handleSignUp }>
                 <img className="formImage" src={ Avatar } alt="" />
                 <h2>User Sign Up</h2>
@@ -104,6 +109,7 @@ const Signup = () => {
                 </div>
                 <p>Already have an account? <Link to="/signin" className='text-primary pe-auto text-decoration-none' onClick={ navigateSignin }>Please Login</Link> </p>
             </form>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };

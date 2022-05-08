@@ -10,6 +10,7 @@ import Loading from '../Loading/Loading';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PageTitle from '../PageTitle/PageTitle';
 const SignIn = () => {
     const emailRef = useRef('');
     const passwordRef = useRef('');
@@ -69,6 +70,7 @@ const SignIn = () => {
     // }
     return (
         <div style={ { backgroundColor: 'powderblue' } } className="p-5">
+            <PageTitle title="Please SignIn"></PageTitle>
             { errors }
             <ToastContainer></ToastContainer>
             <h2 style={ { color: 'burlywood' } } className="text-center fw-bold fs-1">Login Here Please</h2>
